@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Test - Semantic Sales Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .upload-area:hover {
+            border-color: #007bff;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <h1>Semantic Sales Analyzer - File Upload Test</h1>
+    
+    <div class="info">
+        <strong>Instructions:</strong><br>
+        1. Click "Download Sample CSV" to get the test data<br>
+        2. Click "Choose File" and select the downloaded CSV<br>
+        3. Click "Upload File" to test the upload<br>
+        4. Check the results below
+    </div>
+
+    <div class="upload-area">
+        <h3>Step 1: Download Sample Data</h3>
+        <button onclick="downloadSample()">Download Sample CSV</button>
+        <p><small>Sample sales data with 40 records</small></p>
+    </div>
+
+    <div class="upload-area">
+        <h3>Step 2: Upload File</h3>
+        <input type="file" id="fileInput" accept=".csv" style="margin: 10px;">
+        <br>
+        <button onclick="uploadFile()">Upload File</button>
+        <button onclick="testBackend()">Test Backend Connection</button>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        function downloadSample() {
+            const csvContent = `OrderID,Date,ProductName,Quantity,UnitPrice,City,CustomerID
+1,2023-01-15,Laptop,2,1200.00,New York,CUST001
+2,2023-01-16,Mouse,5,25.50,Los Angeles,CUST002
+3,2023-01-17,Keyboard,3,75.00,Chicago,CUST003
+4,2023-01-18,Monitor,2,300.00,Houston,CUST004
+5,2023-01-19,Laptop,1,1200.00,Phoenix,CUST005
+6,2023-01-20,Webcam,4,45.00,Philadelphia,CUST006
+7,2023-01-21,Mouse,3,25.50,San Antonio,CUST007
+8,2023-01-22,Keyboard,2,75.00,San Diego,CUST008
+9,2023-01-23,Monitor,1,300.00,Dallas,CUST009
+10,2023-01-24,Laptop,3,1200.00,San Jose,CUST010
+11,2023-01-25,Headphones,6,89.99,Austin,CUST011
+12,2023-01-26,Webcam,2,45.00,Jacksonville,CUST012
+13,2023-01-27,Mouse,4,25.50,Fort Worth,CUST013
+14,2023-01-28,Keyboard,1,75.00,Columbus,CUST014
+15,2023-01-29,Monitor,3,300.00,Charlotte,CUST015
+16,2023-01-30,Headphones,3,89.99,Indianapolis,CUST016
+17,2023-02-01,Laptop,2,1200.00,San Francisco,CUST017
+18,2023-02-02,Mouse,6,25.50,Seattle,CUST018
+19,2023-02-03,Keyboard,4,75.00,Denver,CUST019
+20,2023-02-04,Webcam,3,45.00,Boston,CUST020
+21,2023-02-05,Monitor,2,300.00,Washington,CUST021
+22,2023-02-06,Headphones,5,89.99,Nashville,CUST022
+23,2023-02-07,Laptop,1,1200.00,Baltimore,CUST023
+24,2023-02-08,Mouse,2,25.50,Las Vegas,CUST024
+25,2023-02-09,Keyboard,3,75.00,Milwaukee,CUST025
+26,2023-02-10,Webcam,1,45.00,Albuquerque,CUST026
+27,2023-02-11,Monitor,4,300.00,Tucson,CUST027
+28,2023-02-12,Headphones,2,89.99,Fresno,CUST028
+29,2023-02-13,Laptop,3,1200.00,Sacramento,CUST029
+30,2023-02-14,Mouse,5,25.50,Kansas City,CUST030
+31,2023-02-15,Keyboard,2,75.00,Mesa,CUST031
+32,2023-02-16,Webcam,4,45.00,Atlanta,CUST032
+33,2023-02-17,Monitor,1,300.00,Oklahoma City,CUST033
+34,2023-02-18,Headphones,3,89.99,Raleigh,CUST034
+35,2023-02-19,Laptop,2,1200.00,Long Beach,CUST035
+36,2023-02-20,Mouse,3,25.50,Virginia Beach,CUST036
+37,2023-02-21,Keyboard,5,75.00,Miami,CUST037
+38,2023-02-22,Webcam,2,45.00,Oakland,CUST038
+39,2023-02-23,Monitor,3,300.00,Minneapolis,CUST039
+40,2023-02-24,Headphones,4,89.99,Tampa,CUST040`;
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'sample_sales_data.csv';
+            a.click();
+            window.URL.revokeObjectURL(url);
+            
+            showResult('Sample CSV downloaded successfully!', 'success');
+        }
+
+        async function testBackend() {
+            const result = document.getElementById('result');
+            result.innerHTML = '<div class="info">Testing backend connection...</div>';
+            
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showResult('Backend connection successful! API is ready.', 'success');
+                } else {
+                    showResult('Backend connection failed!', 'error');
+                }
+            } catch (error) {
+                showResult(`Backend connection error: ${error.message}`, 'error');
+            }
+        }
+
+        async function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showResult('Please select a file first!', 'error');
+                return;
+            }
+            
+            if (!file.name.endsWith('.csv')) {
+                showResult('Please select a CSV file!', 'error');
+                return;
+            }
+            
+            showResult('Uploading file...', 'info');
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            try {
+                const response = await fetch('http://localhost:8000/upload-data', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showResult(
+                        `Upload successful!<br>
+                        Rows processed: ${data.rows}<br>
+                        Columns: ${data.columns.join(', ')}<br>
+                        <br>
+                        <strong>Now you can use the main application at <a href="http://localhost:3000" target="_blank">http://localhost:3000</a></strong>`, 
+                        'success'
+                    );
+                } else {
+                    showResult(`Upload failed: ${data.detail || 'Unknown error'}`, 'error');
+                }
+            } catch (error) {
+                showResult(`Upload error: ${error.message}`, 'error');
+            }
+        }
+
+        function showResult(message, type) {
+            const result = document.getElementById('result');
+            result.innerHTML = `<div class="${type}">${message}</div>`;
+        }
+    </script>
+</body>
+</html>
