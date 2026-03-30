@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Management Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .feature {
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .button-demo {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .btn-refresh {
+            background: #e3f2fd;
+            color: #1976d2;
+            border: 1px solid #bbdefb;
+        }
+        .btn-upload {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+        .btn-remove {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+        .btn-primary {
+            background: #007bff;
+            color: white;
+            border: 1px solid #0056b3;
+        }
+        .step {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 Data Management Guide</h1>
+        <p>Complete control over your datasets in the Semantic Sales Trend Analyzer</p>
+    </div>
+
+    <div class="feature">
+        <h2>🔄 Data Management Options</h2>
+        <p>When data is loaded, you now have three powerful options in the header:</p>
+        
+        <div style="margin: 20px 0;">
+            <button class="button-demo btn-refresh">🔄 Refresh</button>
+            <button class="button-demo btn-upload">📤 New Data</button>
+            <button class="button-demo btn-remove">🗑️ Remove</button>
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>1. 🔄 Refresh Data Status</h3>
+        <p><strong>What it does:</strong> Checks if data is still available in the backend</p>
+        <p><strong>When to use:</strong> After backend restart or if you're unsure about data status</p>
+        <p><strong>Result:</strong> Updates the "Data Loaded" indicator</p>
+    </div>
+
+    <div class="step">
+        <h3>2. 📤 Upload New Data</h3>
+        <p><strong>What it does:</strong> Replaces current dataset with a new CSV file</p>
+        <p><strong>When to use:</strong> When you want to analyze different data</p>
+        <p><strong>Result:</strong> Old data is replaced, all visualizations update automatically</p>
+    </div>
+
+    <div class="step">
+        <h3>3. 🗑️ Remove Dataset</h3>
+        <p><strong>What it does:</strong> Completely clears all uploaded data</p>
+        <p><strong>When to use:</strong> When you want to start fresh or test with different data</p>
+        <p><strong>Result:</strong> All data cleared, app returns to "Upload CSV" state</p>
+    </div>
+
+    <div class="warning">
+        <h3>⚠️ Important Notes</h3>
+        <ul>
+            <li><strong>Remove Action:</strong> Shows a confirmation dialog before deleting data</li>
+            <li><strong>Data Persistence:</strong> Data persists across page refreshes but not backend restarts</li>
+            <li><strong>File Format:</strong> Only CSV files are supported</li>
+            <li><strong>Column Mapping:</strong> The app automatically maps common column names</li>
+        </ul>
+    </div>
+
+    <div class="success">
+        <h3>✅ Quick Workflow Examples</h3>
+        
+        <h4>Scenario 1: Test Different Datasets</h4>
+        <ol>
+            <li>Upload initial dataset</li>
+            <li>Analyze the results</li>
+            <li>Click "New Data" to upload a different dataset</li>
+            <li>Compare the new results</li>
+        </ol>
+
+        <h4>Scenario 2: Start Fresh</h4>
+        <ol>
+            <li>Click "Remove" to clear current data</li>
+            <li>Confirm the removal in the dialog</li>
+            <li>Upload a fresh dataset</li>
+            <li>Begin new analysis</li>
+        </ol>
+
+        <h4>Scenario 3: Backend Restart Recovery</h4>
+        <ol>
+            <li>Notice data seems missing after backend restart</li>
+            <li>Click "Refresh" to check data status</li>
+            <li>If data is missing, upload again</li>
+            <li>Continue with analysis</li>
+        </ol>
+    </div>
+
+    <div class="feature">
+        <h2>🎯 Best Practices</h2>
+        <ul>
+            <li><strong>Backup Important Data:</strong> Keep copies of important CSV files</li>
+            <li><strong>Test with Sample Data:</strong> Use the provided sample data to test features</li>
+            <li><strong>Check Data Format:</strong> Ensure CSV has required columns (ProductName, Quantity, UnitPrice, etc.)</li>
+            <li><strong>Use Refresh First:</strong> Try "Refresh" before re-uploading the same data</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <button class="button-demo btn-primary" onclick="window.open('http://localhost:3000', '_blank')">
+            🚀 Open Semantic Sales Analyzer
+        </button>
+    </div>
+</body>
+</html>
