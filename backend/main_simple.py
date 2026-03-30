@@ -33,14 +33,20 @@ class DataProcessor:
         # Handle null values
         df_clean = df_clean.dropna()
         
-        # Standardize column names
+        # Standardize column names - more comprehensive mapping
         column_mapping = {
             'Product': 'ProductName',
+            'product': 'ProductName',
             'Order ID': 'OrderID',
+            'OrderID': 'OrderID',
             'Quantity Ordered': 'Quantity',
+            'quantityordered': 'Quantity',
             'Price Each': 'UnitPrice',
+            'priceeach': 'UnitPrice',
             'Order Date': 'Date',
-            'Purchase Address': 'CustomerID'
+            'orderdate': 'Date',
+            'Purchase Address': 'CustomerID',
+            'purchaseaddress': 'CustomerID'
         }
         
         # Apply column mapping
