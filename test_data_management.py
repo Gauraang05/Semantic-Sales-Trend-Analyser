@@ -40,8 +40,8 @@ def test_data_management():
     # Test 4: Re-upload data
     print("\n4. Re-uploading sample data...")
     try:
-        with open('data/sample_sales_data.csv', 'rb') as f:
-            files = {'file': ('sample_sales_data.csv', f, 'text/csv')}
+        with open('Sales Data.csv', 'rb') as f:
+            files = {'file': ('Sales Data.csv', f, 'text/csv')}
             response = requests.post('http://localhost:8000/upload-data', files=files)
         
         if response.status_code == 200:

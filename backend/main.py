@@ -35,6 +35,19 @@ class DataProcessor:
     def clean_data(df: pd.DataFrame) -> pd.DataFrame:
         """Clean and preprocess sales data"""
         # Make a copy to avoid modifying original
+        df_clean.columns = df_clean.columns.str.strip()
+        # Normalize column names
+        if 'Product' in df_clean.columns:
+            df_clean.rename(columns={'Product': 'ProductName'}, inplace=True)
+
+        if 'Quantity Ordered' in df_clean.columns:
+            df_clean.rename(columns={'Quantity Ordered': 'Quantity'}, inplace=True)
+
+        if 'Price Each' in df_clean.columns:
+            df_clean.rename(columns={'Price Each': 'UnitPrice'}, inplace=True)
+
+        if 'Order Date' in df_clean.columns:
+            df_clean.rename(columns={'Order Date': 'DateTime'}, inplace=True)
         df_clean = df.copy()
         
         # Handle null values

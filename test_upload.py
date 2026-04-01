@@ -3,14 +3,14 @@ import io
 import pandas as pd
 
 # Read the sample CSV
-df = pd.read_csv('data/sample_sales_data.csv')
+df = pd.read_csv('Sales Data.csv')
 print("Original columns:", df.columns.tolist())
 print("Sample data:")
 print(df.head())
 
 # Upload to backend
 try:
-    files = {'file': ('sample_sales_data.csv', open('data/sample_sales_data.csv', 'rb'), 'text/csv')}
+    files = {'file': ('Sales Data.csv', open('Sales Data.csv', 'rb'), 'text/csv')}
     response = requests.post('http://localhost:8000/upload-data', files=files)
 
     print("\nUpload response:")

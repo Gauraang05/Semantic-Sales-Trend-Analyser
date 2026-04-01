@@ -5,7 +5,7 @@ def test_upload():
     print("=== Testing File Upload ===")
     
     # Check if file exists
-    file_path = 'data/sample_sales_data.csv'
+    file_path = 'Sales Data.csv'
     if not os.path.exists(file_path):
         print(f"[ERROR] File not found: {file_path}")
         return False
