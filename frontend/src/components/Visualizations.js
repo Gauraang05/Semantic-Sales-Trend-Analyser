@@ -203,7 +203,7 @@ const Visualizations = ({ dataUploaded, checkingData }) => {
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center mb-4">
               <Clock className="w-5 h-5 text-orange-600 mr-2" />
-              <h3 className="text-lg font-semibold text-gray-900">Sales by Hour</h3>
+              <h3 className="text-lg font-semibold text-gray-900">Sales per Day</h3>
             </div>
             <Plot
               data={[
@@ -220,7 +220,7 @@ const Visualizations = ({ dataUploaded, checkingData }) => {
               layout={{
                 responsive: true,
                 autosize: true,
-                xaxis: { title: 'Hour of Day' },
+                xaxis: { title: 'Day' },
                 yaxis: { title: 'Sales ($)' },
                 margin: { t: 20, r: 20, b: 60, l: 60 }
               }}
